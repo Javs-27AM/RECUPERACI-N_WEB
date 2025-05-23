@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Recompensas</title>
+  </head>
+  <body>
+    <h2>Obtener código diario</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% for
+    category, msg in messages %}
+    <p style="color: red">{{ msg }}</p>
+    {% endfor %} {% endwith %}
+    <form method="post">
+      <label>Email del jugador:</label><br />
+      <input type="email" name="email" required />
+      <button type="submit">Generar código</button>
+    </form>
+  </body>
+</html>

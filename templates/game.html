@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Juego de recompensas</title>
+  </head>
+  <body>
+    <h1>Juego de recompensas</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <ul>
+      {% for category, msg in messages %}
+      <li
+        style="color:
+          {% if category == 'danger' %}red
+          {% elif category == 'warning' %}orange
+          {% elif category == 'success' %}green
+          {% else %}black
+          {% endif %}
+        "
+      >
+        {{ msg }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} {% if not playerID %}
+    <h2>Iniciar sesión</h2>
+    <form method="post">
+      <label>Email:</label><br />
+      <input type="email" name="email" required />
+      <button type="submit">Iniciar sesión</button>
+    </form>
+    {% else %}
+    <p>
+      Sesión iniciada como {{ playerID }} -
+      <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+    </p>
+
+    <h2>Generar código diario</h2>
+    <form method="post">
+      <button type="submit" name="generate_code">Generar código</button>
+    </form>
+
+    <h2>Reclamar recompensa</h2>
+    <form method="post">
+      <label for="code">Código:</label><br />
+      <input type="text" id="code" name="code" required />
+      <button type="submit" name="claim_code">Reclamar</button>
+    </form>
+    {% endif %}
+  </body>
+</html>

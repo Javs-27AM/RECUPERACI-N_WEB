@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Reclamar recompensa</title>
+  </head>
+  <body>
+    <h2>Ingresa tu código de recompensa</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% for
+    category, msg in messages %}
+    <p style="color: red">{{ msg }}</p>
+    {% endfor %} {% endwith %}
+
+    <form method="post">
+      <input type="hidden" name="playerID" value="{{ playerID }}" />
+      <label for="code">Código:</label><br />
+      <input type="text" id="code" name="code" required />
+      <br />
+      <button type="submit">Reclamar</button>
+    </form>
+
+    {% if result %}
+    <p><strong>{{ result }}</strong></p>
+    {% endif %}
+  </body>
+</html>

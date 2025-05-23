@@ -1,0 +1,24 @@
+-- Tabla de usuarios
+CREATE TABLE users (
+    email TEXT PRIMARY KEY,
+    player_id VARCHAR(6),
+    client_id VARCHAR(5)
+);
+
+-- Progreso diario por jugador
+CREATE TABLE player_progress (
+    player_id VARCHAR(6) PRIMARY KEY,
+    current_day INT,
+    first_request_date DATE,
+    last_request_date DATE
+);
+
+-- Tokens generados
+CREATE TABLE tokens (
+    code VARCHAR(20) PRIMARY KEY,
+    player_id VARCHAR(6),
+    expires_at TIMESTAMP,
+    used BOOLEAN,
+    day INT,
+    date_generated DATE
+);
